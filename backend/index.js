@@ -8,7 +8,7 @@ app.use(cors());
 
 
 //require("dotenv").config();
-const url = "mongodb+srv://maddoxx099:gamingid78@ishmit1.qruysj4.mongodb.net/camp?retryWrites=true&w=majority"
+const url = process.env.MONGO_URI
 
 
 async function connectMongo() {
