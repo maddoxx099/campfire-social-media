@@ -1,4 +1,6 @@
 //mongo setup
+const path = require('path');
+require('dotenv').config({ path: path.resolve(__dirname, '../.env') });
 const mongoose = require("mongoose");
 const express = require("express");
 //const dotenv = require("dotenv");
@@ -7,8 +9,8 @@ const cors = require('cors');
 app.use(cors());
 
 
-//require("dotenv").config();
-const url = process.env.MONGO_URI
+
+const url = process.env.MONGO_URI;
 
 
 async function connectMongo() {
