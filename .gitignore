@@ -5,7 +5,6 @@ node_modules
 .env
 /.pnp
 .pnp.js
-.gitignore
 
 # testing
 /coverage
