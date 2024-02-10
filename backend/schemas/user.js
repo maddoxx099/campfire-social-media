@@ -1,3 +1,4 @@
+const { Int32 } = require("mongodb");
 const { default: mongoose } = require("mongoose");
 
 const{Schema}=mongoose
@@ -5,8 +6,7 @@ const{Schema}=mongoose
 const UserSchema = new Schema({
     name:{
         required:true,
-        type:String
-
+        type:String,
     },
     email:{
         required:true,
@@ -16,6 +16,10 @@ const UserSchema = new Schema({
     password:{
         type:String,
         required:true
+    },
+    nametag:{
+        required:true,
+        type:Int32
     }
   });
   const User = mongoose.model('user',UserSchema)
