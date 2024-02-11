@@ -1,70 +1,43 @@
-# Getting Started with Create React App
+# Campfire - a social media platform
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is a MERN project of creating a unique social media app
 
-## Available Scripts
+## Features
 
-In the project directory, you can run:
+The following are the features that will be implemented in this project 
 
-### `npm start`
+### login page (leads to home page)-
+1. connect with google (oath with google)
+2. logout 
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### home page (leads to every other page)-
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+1. feeds of people followed 
+2. like function
+3. comment function
+4. show who posted with link to their profile
 
-### `npm test`
+### find people/explore -
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+1.search user by username
+2. see profile of user as per user visibility
+3. follow person/follow request 
 
-### `npm run build`
+### profile page -
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+1. user image and banner
+2. details of user (bio)
+5. following/follower list
+6. unique name tag
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### post a blog page- 
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+1. notepad for user to type in
+2. using emoji
 
-### `npm run eject`
+### chats - 
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+1. private chat room
+2. voice calling 
+4. group chat room
+5. conference calling
