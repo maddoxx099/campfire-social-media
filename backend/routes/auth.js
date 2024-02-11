@@ -71,7 +71,7 @@ router.post(
   router.post(
     "/login",
     [
-      body("logincred", "Enter a valid email or username").exists(),
+      body("logincred", "email or username cannot be blank").exists(),
       body("password", "Password cannot be blank").exists(),
     ],
     async (req, res) => {
