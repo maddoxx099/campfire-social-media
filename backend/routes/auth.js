@@ -4,8 +4,20 @@ const router = express.Router()
 const User = require('../schemas/user')
 const {body,validationResult} = require("express-validator")
 const bcrypt = require('bcryptjs');
+const validator = require('validator');
 
 const JWT_SECRET = process.env.JWT_SECRET
+
+const generateUserTag = async (name) => {
+  let nametag;
+  do {
+    nametag = Math.floor(1000 + Math.random() * 9000);
+
+    var existingUser = await User.findOne({ name,nametag });
+  } while (existingUser);
+
+  return nametag;
+};
 
 router.post(
     "/createuser",
@@ -32,12 +44,15 @@ router.post(
         //Produce secure password(hashed)
         const salt = await bcrypt.genSalt(10);
         const secPass = await bcrypt.hash(req.body.password, salt);
-  
+
+        const usertag = await generateUserTag(req.body.name);
+
         //New user
         user = await User.create({
           name: req.body.name,
-          password: secPass,
+          password: secPass, 
           email: req.body.email,
+          nametag: usertag,
         });
         const data = {
           user: {
@@ -56,7 +71,7 @@ router.post(
   router.post(
     "/login",
     [
-      body("email", "Enter a valid email").isEmail(),
+      body("logincred", "Enter a valid email or username").exists(),
       body("password", "Password cannot be blank").exists(),
     ],
     async (req, res) => {
@@ -64,9 +79,16 @@ router.post(
       if (!errors.isEmpty()) {
         return res.status(400).json({ errors: errors.array() });
       }
-      const { email, password } = req.body;
+      const { logincred, password } = req.body;
       try {
-        let user = await User.findOne({ email: req.body.email });
+        let user;
+        if(validator.isEmail(logincred))
+          user = await User.findOne({ logincred: req.body.email });
+        else
+        {
+          const [name,nametag] = logincred.split('#');
+          user = await User.findOne({name,nametag});
+        }
         if (!user) {
           return res
             .status(400)

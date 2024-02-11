@@ -19,7 +19,7 @@ const UserSchema = new Schema({
     },
     nametag:{
         required:true,
-        type:Int32
+        type:Number
     }
   });
   const User = mongoose.model('user',UserSchema)
