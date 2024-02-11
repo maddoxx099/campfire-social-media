@@ -7,8 +7,9 @@ This is a MERN project of creating a unique social media app. WIP
 The following are the features that will be implemented in this project 
 
 ### login page (leads to home page)-
-1. connect with google (oath with google)
-2. logout 
+1. login with google (oath with google)
+2. login with username or email
+3. logout 
 
 ### home page (leads to every other page)-
 
@@ -19,7 +20,7 @@ The following are the features that will be implemented in this project
 
 ### find people/explore -
 
-1.search user by username
+1. search user by username
 2. see profile of user as per user visibility
 3. follow person/follow request 
 
@@ -27,8 +28,8 @@ The following are the features that will be implemented in this project
 
 1. user image and banner
 2. details of user (bio)
-5. following/follower list
-6. unique name tag
+3. following/follower list
+4. unique name tag
 
 ### post a blog page- 
 
@@ -39,5 +40,5 @@ The following are the features that will be implemented in this project
 
 1. private chat room
 2. voice calling 
-4. group chat room
-5. conference calling
+3. group chat room
+4. conference calling
