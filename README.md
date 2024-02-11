@@ -1,6 +1,6 @@
 # Campfire - a social media platform
 
-This is a MERN project of creating a unique social media app
+This is a MERN project of creating a unique social media app. WIP
 
 ## Features
 
