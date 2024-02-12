@@ -114,6 +114,7 @@ router.post(
     }
   );
   
+  
   //Route 3 to get the logged in user's details
  /* router.post("/getuser", fetchuser, async (req, res) => {
     try {

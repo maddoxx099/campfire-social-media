@@ -1,19 +1,31 @@
+const { Timestamp } = require('mongodb');
 const {Int32} = require('mongoose')
 const { default: mongoose } = require("mongoose");
 
 const{Schema}=mongoose
 
 const PostSchema = new Schema({
-    likes:{
-        type:Number,
-        required:true
+    images:{
+        type:Array,
+        required:true,
     },
-    comment:{
+    likes:[{
+        type: mongoose.Types.ObjectId,
+        ref: "user",
+    }],
+    comment:[{
         type:mongoose.Schema.Types.ObjectId,
         ref:'Comment'
-    },
+    }],
     caption:{
         type:String,
-        required:true
-    }
-})
+    },
+    user: {
+        type: mongoose.Types.ObjectId,
+        ref: "user",
+    },
+    },
+    {
+    timestamps:true,
+});
+module.exports = mongoose.model('post',PostSchema);
