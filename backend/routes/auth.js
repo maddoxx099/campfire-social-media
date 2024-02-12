@@ -5,6 +5,7 @@ const User = require('../schemas/user')
 const {body,validationResult} = require("express-validator")
 const bcrypt = require('bcryptjs');
 const validator = require('validator');
+const authc = require('../controllers/authC');
 
 const JWT_SECRET = process.env.JWT_SECRET
 
@@ -59,8 +60,20 @@ router.post(
             id: user.id,
           },
         };
-        const authToken = jwt.sign(data, JWT_SECRET);
-        res.json({ authToken });
+        const accesstoken = createAccessToken(data);
+        const refreshtoken = createRefreshToken(data);
+
+        res.cookie('refreshtoken',refreshtoken,{
+          httpOnly: true,
+          path: "/api/refresh_token",
+          maxAge:15 * 24 * 60 * 60 * 1000, //15 days valid
+        });
+
+        res.json({
+          msg: "Registered Successfully",
+          accesstoken,
+         });
+
         //res.json(user);
       } catch (error) {
         console.error(error.message);
@@ -105,16 +118,27 @@ router.post(
             id: user.id,
           },
         };
-        const authToken = jwt.sign(data, JWT_SECRET);
-        res.json({ authToken });
+        const access_token = createAccessToken(data);
+        const refresh_token = createRefreshToken(data);
+        res.cookie("refreshtoken", refresh_token, {
+          httpOnly: true,
+          path: "/api/refresh_token",
+          sameSite: 'lax',
+          maxAge: 15 * 24 * 60 * 60 * 1000, //validity of 15 days
+        });
+
+        res.json({ 
+          msg: "Login successful",
+          access_token,
+         });
       } catch (error) {
         console.error(error.message);
         res.status(500).send("Some error occurred");
       }
     }
   );
-  
-  
+  router.post("/token_refresh",authc.genAccessToken);
+  router.post("/logout",authc.logout);
   //Route 3 to get the logged in user's details
  /* router.post("/getuser", fetchuser, async (req, res) => {
     try {
@@ -129,5 +153,16 @@ router.post(
   */
 
 
+  const createAccessToken = (payload) => {
+    return jwt.sign(payload, process.env.ACCESS_TOKEN_SECRET, {
+      expiresIn: "1d",
+    });
+  };
+  
+  const createRefreshToken = (payload) => {
+    return jwt.sign(payload, process.env.REFRESH_TOKEN_SECRET, {
+      expiresIn: "15d",
+    });
+  };
 
   module.exports = router;
