@@ -70,7 +70,7 @@ router.post(
           msg: "Registered Successfully",
           accesstoken,
          });
-
+         
         //res.json(user);
       } catch (error) {
         console.error(error.message);

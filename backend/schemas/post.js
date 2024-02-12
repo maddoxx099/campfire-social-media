@@ -4,7 +4,8 @@ const { default: mongoose } = require("mongoose");
 
 const{Schema}=mongoose
 
-const PostSchema = new Schema({
+const PostSchema = new Schema(
+    {
     images:{
         type:Array,
         required:true,
@@ -26,6 +27,7 @@ const PostSchema = new Schema({
     },
     },
     {
-    timestamps:true,
-});
+        timestamps:true,
+    }
+);
 module.exports = mongoose.model('post',PostSchema);
