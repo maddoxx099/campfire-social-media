@@ -83,7 +83,7 @@ router.post(
       try {
         let user;
         if(validator.isEmail(logincred))
-          user = await User.findOne({ logincred: req.body.email });
+          user = await User.findOne({ email:logincred });
         else
         {
           const [name,nametag] = logincred.split('#');
