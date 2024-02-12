@@ -5,9 +5,6 @@ const User = require('../schemas/user')
 const {body,validationResult} = require("express-validator")
 const bcrypt = require('bcryptjs');
 const validator = require('validator');
-const authc = require('../controllers/authC');
-
-const JWT_SECRET = process.env.JWT_SECRET
 
 const generateUserTag = async (name) => {
   let nametag;
@@ -65,7 +62,7 @@ router.post(
 
         res.cookie('refreshtoken',refreshtoken,{
           httpOnly: true,
-          path: "/api/refresh_token",
+          path: "/refresh_token",
           maxAge:15 * 24 * 60 * 60 * 1000, //15 days valid
         });
 
@@ -122,7 +119,7 @@ router.post(
         const refresh_token = createRefreshToken(data);
         res.cookie("refreshtoken", refresh_token, {
           httpOnly: true,
-          path: "/api/refresh_token",
+          path: "/refresh_token",
           sameSite: 'lax',
           maxAge: 15 * 24 * 60 * 60 * 1000, //validity of 15 days
         });
@@ -137,8 +134,16 @@ router.post(
       }
     }
   );
-  router.post("/token_refresh",authc.genAccessToken);
-  router.post("/logout",authc.logout);
+  router.post(
+    "/logout",    
+    async (req, res) => {
+    try {
+        res.clearCookie("refreshtoken", { path: "/refresh_token" });
+        return res.json({ msg: "Logged out Successfully." });
+    } catch (err) {
+        return res.status(500).json({ msg: err.message });
+    }
+});
   //Route 3 to get the logged in user's details
  /* router.post("/getuser", fetchuser, async (req, res) => {
     try {
