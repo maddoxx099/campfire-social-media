@@ -24,8 +24,10 @@ async function connectMongo() {
 
 connectMongo()
 const authRouter = require('./routes/auth');
+const authUser = require('./routes/user');
 
 app.use('/api/auth',authRouter)
+app.use('/api/user',authUser)
 
 app.listen(8000,()=>{
     console.log('app is running')

@@ -8,13 +8,13 @@ const auth = async (req,res,next) => {
         const token = req.header("Authorization");
 
         if(!token){
-            return res.status(400).json({ msg: "You are not authorized" });
+            return res.status(400).json({ msg: "You are not authorized 1" });
         }
 
         const decoded = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
 
         if (!decoded) {
-          return res.status(400).json({ msg: "You are not authorized" });
+          return res.status(400).json({ msg: "You are not authorized 2" });
         }
 
         const user = await Users.findOne({_id: decoded.id});

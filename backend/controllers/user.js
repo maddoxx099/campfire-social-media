@@ -4,7 +4,7 @@ const userCtrl={
     searchUser: async (req,res)=> {
         try {
             const users = await Users.find({
-                name: { $regex: req.query.name },
+                name: req.body.name ,
               })
                 .limit(10)
                 .select("name nametag");
